@@ -1,7 +1,9 @@
 package candys;
 
 
-public class Waffle extends SweetsItem   {
+import java.io.Serializable;
+
+public class Waffle extends SweetsItem implements Serializable {
 
     private int numWaffle;
     private double pricePerPiece;
@@ -24,6 +26,13 @@ public class Waffle extends SweetsItem   {
     @Override
     public double getCost() {
         return  (numWaffle * pricePerPiece );
+    }
+
+    @Override
+    public String toString() {
+        return "name: " + getName() + "\nweight: " + getWeight() + "\nnumber of waffles: "
+                + getNumWaffle() + "\nprice per piece: "
+                + getPricePerPiece()+ "\ncost: " + getCost()+"\n";
     }
 
 }

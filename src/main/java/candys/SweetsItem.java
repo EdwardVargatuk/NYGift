@@ -1,6 +1,8 @@
 package candys;
 
-public abstract class SweetsItem {
+import java.io.Serializable;
+
+public abstract class SweetsItem implements Serializable {
 
     SweetsItem(String name, double weight) {
         this.name = name;
@@ -10,13 +12,12 @@ public abstract class SweetsItem {
     private String name;
     private double weight;
 
+    public SweetsItem() {
+    }
+
     public double getWeight() {
         return weight;
     }
-
-//    SweetsItem(String name) {
-//        this.name = name;
-//    }
 
     public final String getName() {
         return name;

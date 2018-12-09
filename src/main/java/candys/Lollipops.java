@@ -1,6 +1,8 @@
 package candys;
 
-public class Lollipops extends SweetsItem {
+import java.io.Serializable;
+
+public class Lollipops extends SweetsItem implements Serializable {
 
     private double cost;
 
@@ -12,5 +14,10 @@ public class Lollipops extends SweetsItem {
     @Override
     public double getCost() {
         return cost;
+    }
+
+    @Override
+    public String toString() {
+        return "name: " + getName() + "\nweight: " + getWeight() + "\ncost: " + getCost()+"\n";
     }
 }

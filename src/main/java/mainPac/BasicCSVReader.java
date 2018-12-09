@@ -14,11 +14,11 @@ import java.nio.file.Paths;
 
 
 public class BasicCSVReader {
-    private static final String SAMPLE_CSV_FILE_PATH = "src/main/java/mainPac/file.scv";
+    private static final String CSV_FILE_PATH = "src/main/java/mainPac/file.scv";
 
     public static void main(String[] args) throws IOException {
         try (
-                Reader reader = Files.newBufferedReader(Paths.get(SAMPLE_CSV_FILE_PATH));
+                Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH));
                 CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
         ) {
             for (CSVRecord csvRecord : csvParser) {

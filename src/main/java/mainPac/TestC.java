@@ -42,7 +42,7 @@ public class TestC {
 
                 String[] arr = readLines(default_filename);
                 for (String s : arr) {
-//                    System.out.println(s);
+                    System.out.println(s);
 
 
                 }
