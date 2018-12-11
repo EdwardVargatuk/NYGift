@@ -1,23 +1,25 @@
 package candys;
 
-public class NutsChocolate extends Chocolate {
+import java.io.Serializable;
+
+public class NutsChocolate extends Chocolate implements Serializable {
 
     private String nameTopping;
 
-    public int getCostTopping() {
+    private double getCostTopping() {
         return costTopping;
     }
 
-    private int costTopping;
+    private double costTopping;
 
-    public NutsChocolate(String nameChocolate, double weightChocolate,double pricePer100gChocolate, String nameTopping, int costTopping) {
-        super(nameChocolate, weightChocolate, pricePer100gChocolate);
+    public NutsChocolate(String nameChocolate, double weightChocolate,double priceChocolate, String nameTopping, double costTopping) {
+        super(nameChocolate, weightChocolate, priceChocolate);
         this.nameTopping = nameTopping;
         this.costTopping = costTopping;
     }
 
 
-    public String getNameTopping() {
+    private String getNameTopping() {
         return nameTopping;
     }
 
@@ -28,8 +30,8 @@ public class NutsChocolate extends Chocolate {
 
     @Override
     public String toString() {
-        return "name: " + getName() + "\nweight: " + getWeight() + "\nprice per 100 g: "
-                + getPricePer100g()+"\nname of Topping: " + getNameTopping() + "\ncost of Topping: " + getCostTopping()
-                + "\ncost: " + getCost();
+        return "name: " + getName() + "\nweight: " + getWeight() + "\nprice of Chocolate: "
+                + getPrice()+"\nname of Topping: " + getNameTopping() + "\ncost of Topping: " + getCostTopping()
+                + "\ncost: " + getCost()+"\n";
     }
 }

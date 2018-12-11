@@ -3,26 +3,26 @@ package candys;
 import java.io.Serializable;
 
 public class Chocolate extends SweetsItem implements Serializable {
-    private double pricePer100g;
+    private double price;
 
-    Chocolate(String name, double weight, double pricePer100g) {
+   public Chocolate(String name, double weight, double pricePer) {
         super(name, weight);
-        this.pricePer100g = pricePer100g;
+        this.price = pricePer;
     }
 
-    public double getPricePer100g() {
-        return pricePer100g;
+    double getPrice() {
+        return price;
     }
 
     @Override
     public double getCost() {
-        return (pricePer100g * 10);
+        return (price);
     }
 
     @Override
     public String toString() {
-        return "name: " + getName() + "\nweight: " + getWeight() + "\nprice per 100 g: "
-                + getPricePer100g() + "\ncost: " + getCost();
+        return "name: " + getName() + "\nweight: " + getWeight() + "\nprice: "
+                + getPrice() + "\ncost: " + getCost()+"\n";
     }
 }
 

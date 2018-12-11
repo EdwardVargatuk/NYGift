@@ -1,85 +1,53 @@
 package mainPac;
 
-import candys.Lollipops;
-import candys.Waffle;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-
 public class Application {
 
-    private static final String DIRECTORY = "src/main/java/mainPac/";
+    //Main app
 
     private static final Logger logger = LogManager.getLogger(Application.class.getName());
 
     public static void main(String[] args) {
 
-        logger.info("start info");
-        Lollipops lollipops1 = new Lollipops("roshen", 5, 20);
-
-        Waffle waffle = new Waffle("ABK", 0.3, 2, 10);
-        try {
-            Lollipops lollipops2 = new Lollipops("ros", 55, 2);
-              FileOutputStream fileOutputStream = new FileOutputStream(DIRECTORY
-                    + "Lollipops.ser");
-              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(lollipops1);
-            fileOutputStream.close();
-            objectOutputStream.close();
-        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(WriteObjectToFileExample.class.getName())
-            logger.log(Level.ERROR, "exception " + ex);
-        } catch (IOException ex) {
-            logger.log(Level.ERROR, "another one  " + ex);
-//            Logger.getLogger(WriteObjectToFileExample.class.getName())
-//                    .log(Level.SEVERE, null, ex);
-        }
-
-
         //Создать несколько объектов-конфет.
+        CreateData createData = new CreateData();
+        createData.createSweetsItemList();
+
+        FilesInfo filesInfo = new FilesInfo();
+        filesInfo.readFilesInfo();
+        //use file that should be our source
+        String fileNameSource = filesInfo.getPathToRead();
+        String fileNameResult = filesInfo.getPathToWrite();
+
+        WriterToFile writerToFile = new WriterToFile();
+        writerToFile.writeToItemsListFile(createData.getCandyList(), fileNameSource);
 
 
-//Собрать детский подарок с определением его
+        ReaderFromFile readerFromFile = new ReaderFromFile();
+        readerFromFile.readFile(fileNameSource);
+
+        //Собрать детский подарок с определением его
         //веса.
-//
         Box box = new Box();
-        box.getCandy(lollipops1);
-        box.getCandy(waffle);
-        System.out.println(box.totalWeight());
+        box.setCandyList(readerFromFile.getSweetsItemsList());
+        System.out.println("Total weight of the box: " + box.totalWeight() + "\n");
+        System.out.println("Total cost of the box: " + box.totalCost() + "\n");
+
         //Провести сортировку конфет в подарке на основе одного из параметров.
+        logger.info("Start to sort by cost");
+        box.sortList();
+
         //Найти конфету в подарке, соответствующую заданному диапазону
         //параметров.
+        logger.info("Start to filter by weight > 0.1");
         box.filterList();
-
-        logger.info("after log");
-
+        writerToFile.writeToItemsListFile(box.getCandyList(), fileNameResult);
+//        its for check
+//        readerFromFile.readFile(fileNameResult);
+//        System.out.println(readerFromFile.getSweetsItemsList());
+        logger.info("Work of app successfully completed");
 
     }
 }
-
-
-
-//
-//        System.out.println(lollipops1.getName() + " " + lollipops1.getCost());
-//        System.out.println(waffle.getName() + " " + waffle.getCost() + " " + waffle.getNumWaffle() + " " + waffle.getWeight());
-
-//        System.out.println(box.getCandyList());
-
-
-
-//        List<SweetsItem> list;
-//        list = box.getCandyList();
-//        list.stream().sorted(Comparator.comparing(SweetsItem::getCost).reversed())
-//                .filter(x -> x.getWeight() < 5.0).collect(Collectors.toList()).forEach(System.out::println);
-
-
-
-
-//or
-//        list.forEach(e -> System.out.println("Name: " + e.getName() + "\nWeight: " + e.getWeight() + "\nCost: " + e.getCost() + "\n"));
-//or to string

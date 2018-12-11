@@ -8,18 +8,18 @@ public class Waffle extends SweetsItem implements Serializable {
     private int numWaffle;
     private double pricePerPiece;
 
-    public Waffle(String name, double weight, int numWaffle, int pricePerPiece) {
+    public Waffle(String name, double weight, int numWaffle, double pricePerPiece) {
         super(name, weight);
 
         this.numWaffle = numWaffle;
         this.pricePerPiece = pricePerPiece;
     }
 
-    public int getNumWaffle() {
+    private int getNumWaffle() {
         return numWaffle;
     }
 
-    public double getPricePerPiece() {
+    private double getPricePerPiece() {
         return pricePerPiece;
     }
 
